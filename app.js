@@ -14,64 +14,6 @@ var CFG = {
   salt: 'bgfe-2026-cemaltaner'
 };
 
-var TRAINING = [
-  ['Bilgi güvenliğinin temelleri', [
-    'Üç temel unsur: gizlilik, bütünlük, erişilebilirlik.',
-    'Bilgi varlığı; dijital veriler, basılı belgeler, yazılımlar, donanımlar ve kişilerin bilgisini kapsar.',
-    'Risk = tehdidin bir zafiyeti kullanma olasılığı × etkisi.',
-    'Bilgi güvenliği yalnızca BT ekibinin değil, tüm çalışanların sorumluluğudur.']],
-  ['ISO/IEC 27001 ve BGYS', [
-    'ISO/IEC 27001, Bilgi Güvenliği Yönetim Sistemi (BGYS) gerekliliklerini tanımlar.',
-    'Çalışanlar politikayı bilmeli, kendi katkılarının farkında olmalı ve uyumsuzluğun sonuçlarını bilmelidir.',
-    'Düzenli farkındalık eğitimi BGYS\'nin zorunlu bir parçasıdır.']],
-  ['Parola ve kimlik doğrulama', [
-    'Uzun parola cümleleri kullanın; kişisel bilgiden (doğum yılı, isim) kaçının.',
-    'Her hesap için benzersiz parola kullanın; parola yöneticisinden yararlanın.',
-    'Parolanızı kimseyle paylaşmayın; BT destek bile parolanızı istemez.',
-    'Mümkün olan her yerde çok faktörlü kimlik doğrulamayı (MFA) açın.',
-    'Siz başlatmadığınız MFA isteklerini asla onaylamayın ve bildirin.']],
-  ['Oltalama ve sosyal mühendislik', [
-    'Aciliyet, korku, ödül vaadi; oltalamanın klasik tetikleyicileridir.',
-    'Bağlantıya tıklamadan önce gerçek alan adını kontrol edin; şüpheli eki açmayın.',
-    'Vishing (telefon), smishing (SMS), quishing (QR kod) ve hedefli oltalama (spear phishing) türlerini tanıyın.',
-    'Mali talepleri (özellikle "üst yönetici" adına gelenleri) ayrı bir kanaldan doğrulayın.',
-    'Yapay zekâ ile ses ve görüntü taklit edilebilir; tanıdık ses yeterli kanıt değildir.',
-    'Tıkladıysanız/açtıysanız saklamayın, hemen bildirin.']],
-  ['Fiziksel güvenlik ve temiz masa', [
-    'Masadan kalkarken ekranı kilitleyin (Win + L); gizli belgeleri açıkta bırakmayın.',
-    'Ziyaretçiler kayıt altına alınmalı, kart takmalı ve refakatsiz gezdirilmemelidir.',
-    'Kartsız kişiyi arkanızdan içeri almayın (tailgating).',
-    'Gizli kâğıtları imha makinesiyle yok edin; yazıcıda çıktı unutmayın (güvenli yazdırma kullanın).']],
-  ['Cihaz, ağ ve yazılım güvenliği', [
-    'Bulduğunuz USB belleği takmayın; BT\'ye teslim edin.',
-    'Onaysız yazılım kurmayın; antivirüs/EDR\'yi devre dışı bırakmayın.',
-    'Güncellemeleri zamanında yükleyin; çoğu saldırı bilinen açıkları kullanır.',
-    'Halka açık Wi-Fi\'de kurumsal VPN kullanın.',
-    'Cihazlarda disk şifrelemeyi ve ekran kilidini etkin tutun.']],
-  ['Zararlı yazılım ve yedekleme', [
-    'Fidye yazılımı en çok oltalama ve güncellenmemiş sistemler yoluyla bulaşır.',
-    'Fidye ödemek verinin geri geleceğini garanti etmez; olay müdahale sürecini başlatın.',
-    '3-2-1 yedekleme: 3 kopya, 2 farklı ortam, 1 uzak konum. Yedeklerin geri dönüşünü test edin.']],
-  ['Veri sınıflandırma ve kişisel veri', [
-    'Bilgiyi hassasiyetine göre sınıflandırın ve sınıfına uygun koruyun.',
-    'Gizli bilgiyi kişisel e-postaya, bulut hesaplarına veya sosyal medyaya göndermeyin.',
-    'Kimliği belirli/belirlenebilir kişiye ait her bilgi kişisel veridir (KVKK).',
-    'Yanlış alıcıya gönderilen e-posta bile bir veri ihlali olabilir; bildirin.']],
-  ['Mobil, uzaktan çalışma ve toplantılar', [
-    'İş cihazını aile bireyleriyle paylaşmayın.',
-    'Ev ağında varsayılan yönlendirici parolasını değiştirin, WPA2/WPA3 kullanın.',
-    'Halka açık alanlarda ekran filtresi kullanın; hassas konuşmaları başkalarının duyacağı yerde yapmayın.',
-    'Toplantı bağlantılarını herkese açık paylaşmayın; ekran paylaşmadan önce hassas pencereleri kapatın.',
-    'BYOD cihazlarda kurum politikasına uyun.']],
-  ['Sosyal medya ve yapay zekâ araçları', [
-    'İş yerinde çekilen fotoğraflarda ekran, ağ şeması, rozet gibi unsurların görünmediğinden emin olun.',
-    'Gizli veya kişisel veriyi kurum onayı olmadan genel yapay zekâ araçlarına girmeyin.']],
-  ['Erişim yönetimi ve olay bildirimi', [
-    'En az yetki ilkesi: yalnızca işiniz için gereken erişim.',
-    'İşten ayrılan kişinin erişimleri gecikmeden kapatılır.',
-    'Şüpheli her durumu (kayıp cihaz, oltalama, yanlış gönderim) hemen bildirin; erken bildirim zararı sınırlar.']]
-];
-
 /* ---------- Yardımcılar ---------- */
 var $ = function (s) { return document.querySelector(s); };
 function show(id) {
@@ -111,15 +53,91 @@ function baseUrl() { return location.origin + location.pathname; }
 var st = null, timerH = null, cert = null;
 
 /* ---------- Ana sayfa ---------- */
-function renderTraining() {
-  $('#training').innerHTML = TRAINING.map(function (t, i) {
-    return '<details class="topic"><summary>' + (i + 1) + '. ' + esc(t[0]) + '</summary><ul>' +
-      t[1].map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></details>';
-  }).join('');
+/* ---------- Eğitim ---------- */
+var TKEY = 'bgfe_train_v1', MIN_SEC = 15;
+var tr = { done: [], cur: 0 }, trTimer = null, trLeft = 0, trChecked = false;
+function trSave() { try { localStorage.setItem(TKEY, JSON.stringify(tr)); } catch (e) {} }
+function trLoad() { try { var t = JSON.parse(localStorage.getItem(TKEY)); if (t && Array.isArray(t.done)) tr = t; } catch (e) {} }
+function trCount() { return window.TRAINING.filter(function (_, i) { return tr.done[i]; }).length; }
+function trainComplete() { return trCount() === window.TRAINING.length; }
+function firstOpen() { var i = 0, N = window.TRAINING.length; while (i < N && tr.done[i]) i++; return i; }
+function renderTrainHome() {
+  var n = trCount(), N = window.TRAINING.length;
+  $('#trBar').style.width = (n / N * 100) + '%';
+  $('#trStatus').textContent = n === N ? '✔ Eğitim tamamlandı (' + n + '/' + N + ' modül). Sınava girebilirsiniz.' : n + ' / ' + N + ' modül tamamlandı.';
+  $('#trBtn').textContent = n === 0 ? 'Eğitime Başla' : n === N ? 'Eğitimi Gözden Geçir' : 'Eğitime Devam Et';
+  updateStart();
 }
+function openTraining() {
+  var fo = firstOpen();
+  tr.cur = fo < window.TRAINING.length ? fo : 0;
+  show('#learn'); renderModule();
+}
+function updateNext() {
+  var nb = $('#trNext'); if (!nb) return;
+  var N = window.TRAINING.length, ready = trChecked && trLeft <= 0, last = tr.cur === N - 1;
+  nb.disabled = !ready;
+  nb.textContent = (last ? 'Eğitimi Bitir ✓' : 'Sonraki Modül →') + (trLeft > 0 ? ' (' + trLeft + ' sn)' : '');
+  $('#trHint').textContent = !trChecked ? 'Devam etmek için pekiştirme sorusunu doğru yanıtlayın.' : (trLeft > 0 ? 'Lütfen modülü okuyun; düğme birkaç saniye içinde açılacak.' : '');
+}
+function renderModule() {
+  var T = window.TRAINING, m = T[tr.cur], N = T.length, isDone = !!tr.done[tr.cur], fo = firstOpen();
+  clearInterval(trTimer);
+  trLeft = isDone ? 0 : MIN_SEC; trChecked = isDone;
+  $('#trList').innerHTML = T.map(function (x, i) {
+    return '<li><button data-i="' + i + '" class="' + (i === tr.cur ? 'cur ' : '') + (tr.done[i] ? 'ok' : '') + '"' + (i > fo ? ' disabled' : '') + '><span class="mk">' + (tr.done[i] ? '✔' : (i + 1)) + '</span>' + esc(x.t) + '</button></li>';
+  }).join('');
+  document.querySelectorAll('#trList button').forEach(function (b) { b.onclick = function () { tr.cur = +b.dataset.i; trSave(); renderModule(); }; });
+  var c = m.c, perm = shuffle([0, 1, 2]), L = ['A', 'B', 'C'];
+  var li = function (arr) { return arr.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join(''); };
+  $('#trMain').innerHTML =
+    '<div class="qmeta"><span class="tag">Modül ' + (tr.cur + 1) + ' / ' + N + '</span></div>' +
+    '<h2>' + esc(m.t) + '</h2><p class="lead">' + esc(m.intro) + '</p>' +
+    '<h3>Bilmeniz gerekenler</h3><ul class="pts">' + li(m.points) + '</ul>' +
+    '<div class="example"><b>📌 Gerçek hayattan örnek</b><p>' + esc(m.example) + '</p></div>' +
+    '<div class="dd"><div class="do"><h4>✔ Yapın</h4><ul>' + li(m.dos) + '</ul></div><div class="dont"><h4>✖ Yapmayın</h4><ul>' + li(m.donts) + '</ul></div></div>' +
+    '<div class="mini"><h3>Pekiştirme sorusu</h3><p><b>' + esc(c[0]) + '</b></p><div id="trOpts" class="opts">' +
+    perm.map(function (o, p) { return '<button class="opt" data-o="' + o + '"><span class="k">' + L[p] + '</span><span>' + esc(c[1 + o]) + '</span></button>'; }).join('') +
+    '</div><div id="trFb" class="fb"></div></div>' +
+    '<p class="small muted" id="trHint"></p>' +
+    '<div class="btn-row"><button id="trPrev" class="btn"' + (tr.cur === 0 ? ' disabled' : '') + '>← Önceki</button><button id="trNext" class="btn primary" disabled></button></div>';
+  var showFb = function (ok) {
+    $('#trFb').className = 'fb ' + (ok ? 'good' : 'bad');
+    $('#trFb').textContent = ok ? '✔ Doğru. ' + c[4] : '✖ Yanlış cevap. Modülü gözden geçirip tekrar deneyin.';
+  };
+  document.querySelectorAll('#trOpts .opt').forEach(function (b) {
+    b.onclick = function () {
+      if (trChecked) return;
+      var ok = +b.dataset.o === 0;
+      if (ok) { trChecked = true; b.classList.add('sel'); document.querySelectorAll('#trOpts .opt').forEach(function (x) { x.disabled = true; }); }
+      showFb(ok); updateNext();
+    };
+  });
+  if (isDone) {
+    document.querySelectorAll('#trOpts .opt').forEach(function (x) { x.disabled = true; if (+x.dataset.o === 0) x.classList.add('sel'); });
+    showFb(true);
+  }
+  $('#trPrev').onclick = function () { if (tr.cur > 0) { tr.cur--; trSave(); renderModule(); } };
+  $('#trNext').onclick = function () {
+    tr.done[tr.cur] = true; trSave();
+    if (tr.cur < N - 1) { tr.cur++; trSave(); renderModule(); }
+    else { clearInterval(trTimer); show('#home'); renderTrainHome(); renderResume(); }
+  };
+  updateNext();
+  if (trLeft > 0) trTimer = setInterval(function () { trLeft--; updateNext(); if (trLeft <= 0) clearInterval(trTimer); }, 1000);
+  window.scrollTo(0, 0);
+}
+function initTraining() {
+  trLoad();
+  $('#trBtn').onclick = openTraining;
+  $('#trHome').onclick = function () { clearInterval(trTimer); show('#home'); renderTrainHome(); renderResume(); };
+  renderTrainHome();
+}
+
 function updateStart() {
-  var ok = $('#nameInput').value.trim().length >= 3 && $('#readChk').checked && $('#rulesChk').checked;
+  var ok = $('#nameInput').value.trim().length >= 3 && trainComplete() && $('#rulesChk').checked;
   $('#startBtn').disabled = !ok;
+  $('#lockNote').textContent = trainComplete() ? '' : '🔒 Sınava girebilmek için önce eğitimi tamamlayın.';
 }
 function renderResume() {
   var box = $('#resumeBox'); box.hidden = true;
@@ -304,7 +322,7 @@ function drawCert(canvas, d) {
   x.fillText('Eğitimi ve sınavı başarı ile tamamlamıştır.', cx, 870);
 
   x.fillStyle = '#5b6b82'; x.font = '28px system-ui, Arial, sans-serif';
-  wrapText(x, 'ISO/IEC 27001 Bilgi Güvenliği Yönetim Sistemi kapsamında ' + d.t + ' soruluk sınavda ' + d.s + ' doğru cevap (%' + Math.round(d.s / d.t * 100) + ') ile başarılı olmuştur.', cx, 930, W - 460, 40);
+  wrapText(x, 'ISO/IEC 27001 Bilgi Güvenliği Yönetim Sistemi kapsamında ' + window.TRAINING.length + ' modüllük eğitimi tamamlamış, ' + d.t + ' soruluk sınavda ' + d.s + ' doğru cevap (%' + Math.round(d.s / d.t * 100) + ') ile başarılı olmuştur.', cx, 930, W - 460, 40);
 
   // alt alan
   x.textAlign = 'left'; x.fillStyle = '#14213d'; x.font = 'bold 30px Georgia, serif';
@@ -374,9 +392,9 @@ function checkVerify() {
 /* ---------- Başlat ---------- */
 document.addEventListener('DOMContentLoaded', function () {
   if (checkVerify()) return;
-  renderTraining();
-  ['#nameInput', '#readChk', '#rulesChk'].forEach(function (s) { $(s).addEventListener('input', updateStart); $(s).addEventListener('change', updateStart); });
+  ['#nameInput', '#rulesChk'].forEach(function (s) { $(s).addEventListener('input', updateStart); $(s).addEventListener('change', updateStart); });
   $('#startBtn').onclick = function () {
+    if (!trainComplete()) return;
     if (st && !st.done && st.end > Date.now() && !confirm('Devam eden sınavınız silinip yenisi başlayacak. Emin misiniz?')) return;
     startExam();
   };
@@ -395,6 +413,7 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('beforeunload', function (e) {
     if (st && !st.done && !$('#exam').hidden) { e.preventDefault(); e.returnValue = ''; }
   });
+  initTraining();
   st = load();
   if (st && st.name) $('#nameInput').value = st.name;
   updateStart(); renderResume();

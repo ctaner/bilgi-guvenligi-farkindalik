@@ -28,8 +28,9 @@
 <section id="home" class="screen">
   <div class="hero">
     <h1>Bilgi Güvenliği Farkındalık Eğitimi</h1>
-    <p>ISO/IEC 27001 Bilgi Güvenliği Yönetim Sistemi kapsamında çalışanlardan beklenen farkındalık düzeyini ölçün ve sertifikanızı alın. <strong>Ücretsiz</strong>.</p>
+    <p>ISO/IEC 27001 Bilgi Güvenliği Yönetim Sistemi kapsamında önce eğitimi tamamlayın, ardından farkındalık düzeyinizi sınavla ölçüp sertifikanızı alın. <strong>Ücretsiz</strong>.</p>
     <ul class="facts">
+      <li><b>11</b><span>eğitim modülü</span></li>
       <li><b>40</b><span>soru</span></li>
       <li><b>60</b><span>dakika</span></li>
       <li><b>%70</b><span>başarı barajı</span></li>
@@ -40,9 +41,11 @@
   <div id="resumeBox" class="card notice" hidden></div>
 
   <div class="card">
-    <h2>1) Eğitim içeriği</h2>
-    <p class="muted">Sınava girmeden önce aşağıdaki başlıkları gözden geçirin. Sorular bu konulardan gelir.</p>
-    <div id="training"></div>
+    <h2>1) Eğitim</h2>
+    <p class="muted">11 kısa modül: açıklama, gerçek hayattan örnek, yapılacaklar/yapılmayacaklar ve her modülün sonunda bir pekiştirme sorusu. Sınava girebilmek için tüm modülleri tamamlamalısınız (yaklaşık 20–30 dakika). İlerlemeniz tarayıcınızda saklanır.</p>
+    <div class="progress"><div id="trBar"></div></div>
+    <p class="small" id="trStatus"></p>
+    <button id="trBtn" class="btn primary">Eğitime Başla</button>
   </div>
 
   <div class="card">
@@ -50,10 +53,22 @@
     <label class="field">Sertifikada görünecek ad soyad
       <input id="nameInput" type="text" maxlength="60" placeholder="Örn. Ayşe Yılmaz" autocomplete="name">
     </label>
-    <label class="check"><input type="checkbox" id="readChk"> Eğitim içeriğini okudum.</label>
     <label class="check"><input type="checkbox" id="rulesChk"> Sınav süresinin 60 dakika olduğunu ve başladıktan sonra sayacın durmadığını biliyorum.</label>
+    <p class="small" id="lockNote"></p>
     <button id="startBtn" class="btn primary" disabled>Sınavı Başlat</button>
     <p class="small muted">Verileriniz yalnızca tarayıcınızda tutulur; herhangi bir sunucuya gönderilmez.</p>
+  </div>
+</section>
+
+<!-- EĞİTİM -->
+<section id="learn" class="screen" hidden>
+  <div class="tr-grid">
+    <aside class="card tr-side">
+      <h3>Modüller</h3>
+      <ol id="trList"></ol>
+      <button id="trHome" class="btn ghost wide">← Ana sayfa</button>
+    </aside>
+    <div class="card tr-main" id="trMain"></div>
   </div>
 </section>
 
@@ -125,6 +140,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
 <script src="questions.js"></script>
+<script src="training.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
