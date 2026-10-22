@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bilgi Güvenliği Farkındalık Eğitimi ve Sınavı | Ücretsiz Sertifika</title>
+<meta name="description" content="Ücretsiz Bilgi Güvenliği Farkındalık Eğitimi: 40 soruluk, 60 dakikalık sınav ve LinkedIn'de paylaşılabilir başarı sertifikası.">
+<meta property="og:title" content="Bilgi Güvenliği Farkındalık Eğitimi ve Sınavı">
+<meta property="og:description" content="Ücretsiz eğitim, 40 soruluk sınav ve LinkedIn'de paylaşılabilir sertifika.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.3 8 11 4.6-1.7 8-6 8-11V5l-8-3Z" fill="#14b8a6"/><path d="m8.5 12 2.5 2.5L16 9.5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Bilgi Güvenliği Farkındalık</span>
+    </div>
+    <div id="timerBox" class="timer" hidden>⏱ <span id="timer">60:00</span></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ANA SAYFA -->
+<section id="home" class="screen">
+  <div class="hero">
+    <h1>Bilgi Güvenliği Farkındalık Eğitimi</h1>
+    <p>ISO/IEC 27001 Bilgi Güvenliği Yönetim Sistemi kapsamında çalışanlardan beklenen farkındalık düzeyini ölçün ve sertifikanızı alın. <strong>Ücretsiz</strong>.</p>
+    <ul class="facts">
+      <li><b>40</b><span>soru</span></li>
+      <li><b>60</b><span>dakika</span></li>
+      <li><b>%70</b><span>başarı barajı</span></li>
+      <li><b>PDF · PNG</b><span>sertifika</span></li>
+    </ul>
+  </div>
+
+  <div id="resumeBox" class="card notice" hidden></div>
+
+  <div class="card">
+    <h2>1) Eğitim içeriği</h2>
+    <p class="muted">Sınava girmeden önce aşağıdaki başlıkları gözden geçirin. Sorular bu konulardan gelir.</p>
+    <div id="training"></div>
+  </div>
+
+  <div class="card">
+    <h2>2) Sınava başla</h2>
+    <label class="field">Sertifikada görünecek ad soyad
+      <input id="nameInput" type="text" maxlength="60" placeholder="Örn. Ayşe Yılmaz" autocomplete="name">
+    </label>
+    <label class="check"><input type="checkbox" id="readChk"> Eğitim içeriğini okudum.</label>
+    <label class="check"><input type="checkbox" id="rulesChk"> Sınav süresinin 60 dakika olduğunu ve başladıktan sonra sayacın durmadığını biliyorum.</label>
+    <button id="startBtn" class="btn primary" disabled>Sınavı Başlat</button>
+    <p class="small muted">Verileriniz yalnızca tarayıcınızda tutulur; herhangi bir sunucuya gönderilmez.</p>
+  </div>
+</section>
+
+<!-- SINAV -->
+<section id="exam" class="screen" hidden>
+  <div class="exam-grid">
+    <div class="card qcard">
+      <div class="qmeta"><span id="qNo"></span><span id="qCat" class="tag"></span></div>
+      <h2 id="qText"></h2>
+      <div id="opts" class="opts"></div>
+      <div class="qnav">
+        <button id="prevBtn" class="btn">← Önceki</button>
+        <button id="flagBtn" class="btn ghost">⚑ İşaretle</button>
+        <button id="nextBtn" class="btn">Sonraki →</button>
+      </div>
+    </div>
+    <aside class="card side">
+      <div class="progress"><div id="bar"></div></div>
+      <p class="small"><span id="answeredCnt">0</span> / 40 cevaplandı</p>
+      <div id="grid" class="grid"></div>
+      <div class="legend small muted"><i class="d a"></i>Cevaplı <i class="d f"></i>İşaretli <i class="d c"></i>Şu an</div>
+      <button id="finishBtn" class="btn primary wide">Sınavı Bitir</button>
+    </aside>
+  </div>
+</section>
+
+<!-- SONUÇ -->
+<section id="result" class="screen" hidden>
+  <div class="card center" id="scoreCard"></div>
+
+  <div id="certSection" class="card" hidden>
+    <h2>🎓 Sertifikanız</h2>
+    <canvas id="certCanvas" class="cert-preview"></canvas>
+    <div class="btn-row">
+      <button id="dlPng" class="btn">PNG indir</button>
+      <button id="dlPdf" class="btn">PDF indir</button>
+      <a id="liAdd" class="btn linkedin" target="_blank" rel="noopener">LinkedIn'e sertifika olarak ekle</a>
+      <a id="liShare" class="btn linkedin ghost" target="_blank" rel="noopener">LinkedIn'de paylaş</a>
+      <button id="copyPost" class="btn ghost">Paylaşım metnini kopyala</button>
+    </div>
+    <p class="small muted">İpucu: "LinkedIn'e sertifika olarak ekle" düğmesi profilinizin <em>Lisanslar ve Sertifikalar</em> bölümünü bilgileri doldurulmuş olarak açar. Gönderi olarak paylaşırken PNG dosyasını görsel olarak ekleyebilirsiniz.</p>
+  </div>
+
+  <div class="card">
+    <h2>Cevap incelemesi</h2>
+    <p class="muted">Yanlış veya boş bıraktığınız soruların doğru cevapları ve açıklamaları:</p>
+    <div id="review"></div>
+  </div>
+
+  <div class="btn-row center">
+    <button id="retryBtn" class="btn primary">Yeniden Dene</button>
+  </div>
+</section>
+
+<!-- DOĞRULAMA -->
+<section id="verify" class="screen" hidden>
+  <div class="card center" id="verifyCard"></div>
+  <div class="btn-row center"><a class="btn primary" id="verifyHome">Sınava git</a></div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>Bu sertifika, katılımcının bilgi güvenliği farkındalık düzeyini ölçen bir eğitim belgesidir; akredite bir kişi belgelendirmesi değildir.</p>
+    <p><a href="https://www.cemaltaner.com.tr" target="_blank" rel="noopener">www.cemaltaner.com.tr</a></p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<script src="questions.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
